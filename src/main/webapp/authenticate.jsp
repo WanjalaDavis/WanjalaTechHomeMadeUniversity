@@ -3,7 +3,6 @@
 
 <%
     // Retrieve login inputs
-    String role = request.getParameter("role");
     String username = request.getParameter("username").trim();
     String password = request.getParameter("password").trim();
 
@@ -21,52 +20,41 @@
         Class.forName("com.mysql.cj.jdbc.Driver");
         conn = DriverManager.getConnection(url, dbUser, dbPass);
 
-        // Admin Login
-        if ("admin".equals(role)) {
-            if ("admin".equals(username) && "admin".equals(password)) {
-                session.setAttribute("userRole", "admin");
-                session.setAttribute("username", "Administrator");
-                response.sendRedirect("adminDashboard.jsp");
-            } else {
-                response.sendRedirect("LoginPage.jsp?error=Invalid Admin Credentials");
-            }
-        }
-        // Student Login
-        else if ("student".equals(role)) {
-            String sql = "SELECT full_name FROM students WHERE email = ? AND reg_no = ?";
-            stmt = conn.prepareStatement(sql);
+        // Admin Login Check
+        if ("admin".equals(username) && "admin".equals(password)) {
+            session.setAttribute("userRole", "admin");
+            session.setAttribute("username", "Administrator");
+            response.sendRedirect("adminDashboard.jsp");
+        } else {
+            // Student Login Check
+            String studentSQL = "SELECT full_name FROM students WHERE email = ? AND reg_no = ?";
+            stmt = conn.prepareStatement(studentSQL);
             stmt.setString(1, username);
             stmt.setString(2, password);
             rs = stmt.executeQuery();
-
             if (rs.next()) {
                 session.setAttribute("userRole", "student");
                 session.setAttribute("fullName", rs.getString("full_name"));
                 session.setAttribute("email", username);
                 response.sendRedirect("studentDashboard.jsp");
-            } else {
-                response.sendRedirect("LoginPage.jsp?error=Invalid Student Credentials");
+                return;
             }
-        }
-        // Lecturer Login
-        else if ("lecturer".equals(role)) {
-            String sql = "SELECT name FROM staff WHERE staffNo = ? AND employeeNo = ? AND rank = 'Lecturer'";
-            stmt = conn.prepareStatement(sql);
+            
+            // Lecturer Login Check
+            String lecturerSQL = "SELECT name FROM staff WHERE staffNo = ? AND employeeNo = ? AND rank = 'Lecturer'";
+            stmt = conn.prepareStatement(lecturerSQL);
             stmt.setString(1, username);
             stmt.setString(2, password);
             rs = stmt.executeQuery();
-
             if (rs.next()) {
                 session.setAttribute("userRole", "lecturer");
                 session.setAttribute("fullName", rs.getString("name"));
                 session.setAttribute("staffNo", username);
                 response.sendRedirect("Lecture.jsp");
-            } else {
-                response.sendRedirect("LoginPage.jsp?error=Invalid Lecturer Credentials");
+                return;
             }
-        }
-        // Invalid Login
-        else {
+            
+            // Invalid Credentials
             response.sendRedirect("LoginPage.jsp?error=Invalid Credentials");
         }
 

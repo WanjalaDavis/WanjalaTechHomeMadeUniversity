@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.sql.*" %>
 <%
-    // Ensure the user is logged in as a Lecturer
+   
     String userRole = (String) session.getAttribute("userRole");
     String fullName = (String) session.getAttribute("fullName");
     String staffNo = (String) session.getAttribute("staffNo");
@@ -11,7 +11,7 @@
         return;
     }
 
-    // Database connection details
+    
     String url = "jdbc:mysql://localhost:3306/Managementdb"; 
     String dbUser = "root";  
     String dbPass = "";      
@@ -89,7 +89,6 @@
             </div>
         </div>
 
-        <!-- Display Courses Assigned to the Lecturer -->
         <div class="card mt-4 shadow-lg">
             <div class="card-body">
                 <h4>Courses You Are Teaching</h4>
@@ -128,11 +127,11 @@
         </div>
     </div>
                 
-    <!-- Bootstrap 5 Footer -->
     <footer class="bg-dark text-white pt-5 pb-4 mt-5">
         <div class="container">
             <div class="row">
-                <!-- Quick Links -->
+               
+                
                 <div class="col-md-3 col-sm-6 mb-4">
                     <h5 class="text-uppercase mb-4">Quick Links</h5>
                     <ul class="list-unstyled">
@@ -144,7 +143,7 @@
                     </ul>
                 </div>
 
-                <!-- Contact Information -->
+                
                 <div class="col-md-3 col-sm-6 mb-4">
                     <h5 class="text-uppercase mb-4">Contact Us</h5>
                     <ul class="list-unstyled">
@@ -154,7 +153,7 @@
                     </ul>
                 </div>
 
-                <!-- Social Media Links -->
+               
                 <div class="col-md-3 col-sm-6 mb-4">
                     <h5 class="text-uppercase mb-4">Follow Us</h5>
                     <ul class="list-unstyled">
@@ -165,7 +164,7 @@
                     </ul>
                 </div>
 
-                <!-- Newsletter Subscription -->
+             
                 <div class="col-md-3 col-sm-6 mb-4">
                     <h5 class="text-uppercase mb-4">Newsletter</h5>
                     <p>Subscribe to our newsletter for the latest updates.</p>
@@ -178,7 +177,7 @@
                 </div>
             </div>
 
-            <!-- Copyright Notice -->
+           
             <div class="row mt-4">
                 <div class="col-12 text-center">
                     <p class="mb-0">&copy; 2025 WanjalaTech. All Rights Reserved.</p>
@@ -187,10 +186,10 @@
         </div>
     </footer>
 
-    <!-- Bootstrap JS and dependencies -->
+   
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-    <!-- Font Awesome for Icons -->
+  
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </body>
 </html>

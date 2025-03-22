@@ -1,3 +1,4 @@
 com/mycompany/webuniversitysystem/resources/JakartaEE11Resource.class
 com/mycompany/webuniversitysystem/JakartaRestConfiguration.class
 CourseServlet.class
+BookSeatServlet.class

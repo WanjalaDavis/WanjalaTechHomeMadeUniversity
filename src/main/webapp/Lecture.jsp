@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.sql.*" %>
 <%
-    // Ensure the user is logged in as a Lecturer
+    
     String userRole = (String) session.getAttribute("userRole");
     String fullName = (String) session.getAttribute("fullName");
     String staffNo = (String) session.getAttribute("staffNo");
@@ -11,35 +11,7 @@
         return;
     }
 
-    int totalStudents = 0;
-    if (staffNo != null && !staffNo.isEmpty()) {
-        Connection con = null;
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver"); // Load MySQL Driver
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Managementdb", "root", "");
-
-            String query = "SELECT COUNT(DISTINCT id) FROM results WHERE code IN (SELECT courseUnit FROM CourseTeach WHERE staffId=?)";
-            ps = con.prepareStatement(query);
-            ps.setString(1, staffNo);
-            rs = ps.executeQuery();
-
-            if (rs.next()) {
-                totalStudents = rs.getInt(1);
-            }
-        } catch (Exception e) {
-            out.println("<p style='color:red;'>Error: " + e.getMessage() + "</p>");
-        } finally {
-            if (rs != null) rs.close();
-            if (ps != null) ps.close();
-            if (con != null) con.close();
-        }
-    } else {
-        out.println("<p style='color:red;'>Error: staffNo is missing.</p>");
-    }
-%>
+    %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -64,7 +36,7 @@
 </head>
 <body>
 
-    <!-- Navigation Bar -->
+   
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">HomeMade University</a>
@@ -73,7 +45,7 @@
         </div>
     </nav>
 
-    <!-- Main Content -->
+   
     <div class="container mt-5">
         <div class="row">
             <!-- Profile Card -->
@@ -88,7 +60,8 @@
                 </div>
             </div>
 
-            <!-- Actions Card -->
+           
+                        
             <div class="col-md-8">
                 <div class="card shadow-lg">
                     <div class="card-body">
@@ -97,12 +70,14 @@
                             
                             <li class="list-group-item">
                                 <a href="CourseTeach.jsp"><i class="fas fa-book me-2"></i>Register a Course to Teach</a>
-                            </li>
-                            
+                            </li>                
+                                                     
                             <li class="list-group-item">
                                 <a href="viewCourseStudents.jsp"><i class="fas fa-users me-2"></i>View Students Registered for the Course</a>
                             </li>
-                            
+                             <li class="list-group-item">
+                                <a href="ViewStudentResults.jsp"><i class="fas fa-eye me-2"></i>View Student Results</a>
+                            </li>
                             <li class="list-group-item">
                                 <a href="ViewComplain.jsp"><i class="fas fa-eye me-2"></i>View Student Complain</a>
                             </li>
@@ -116,7 +91,7 @@
         </div>
     </div>
 
-    <!-- Taught Course Section -->
+   
     <div class="card shadow-lg mt-4">
         <div class="card-body">
             <h4 class="card-title">Taught Course</h4>
@@ -138,7 +113,7 @@
                             Class.forName("com.mysql.cj.jdbc.Driver");
                             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Managementdb", "root", "");
 
-                            // Query to get courses the lecturer is assigned to
+                           
                             String query = "SELECT c.id, c.course_name FROM course c " +
                                            "WHERE c.id IN (SELECT courseId FROM assigned_courses WHERE staffNo = ?)";
 
@@ -236,7 +211,7 @@
 %>
 
 
-    <!-- Upload Course Material Section -->
+   
     <div class="card shadow-lg mt-4">
         <div class="card-body">
             <h4 class="card-title">Upload Course Material</h4>
@@ -254,7 +229,7 @@
         </div>
     </div>
 
-    <!-- Footer -->
+   
     <footer class="bg-dark text-white pt-5 pb-4 mt-5">
         <div class="container">
             <div class="row">
@@ -270,7 +245,7 @@
                     </ul>
                 </div>
 
-                <!-- Contact Information -->
+             
                 <div class="col-md-3 col-sm-6 mb-4">
                     <h5 class="text-uppercase mb-4">Contact Us</h5>
                     <ul class="list-unstyled">
@@ -280,7 +255,7 @@
                     </ul>
                 </div>
 
-                <!-- Social Media Links -->
+               
                 <div class="col-md-3 col-sm-6 mb-4">
                     <h5 class="text-uppercase mb-4">Follow Us</h5>
                     <ul class="list-unstyled">
@@ -291,7 +266,7 @@
                     </ul>
                 </div>
 
-                <!-- Newsletter Subscription -->
+             
                 <div class="col-md-3 col-sm-6 mb-4">
                     <h5 class="text-uppercase mb-4">Newsletter</h5>
                     <p>Subscribe to our newsletter for the latest updates.</p>
@@ -304,7 +279,7 @@
                 </div>
             </div>
 
-            <!-- Copyright Notice -->
+          
             <div class="row mt-4">
                 <div class="col-12 text-center">
                     <p class="mb-0">&copy; 2025 WanjalaTech. All Rights Reserved.</p>
@@ -313,10 +288,10 @@
         </div>
     </footer>
 
-    <!-- Bootstrap JS and dependencies -->
+   
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-    <!-- Font Awesome for Icons -->
+    
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </body>
 </html>

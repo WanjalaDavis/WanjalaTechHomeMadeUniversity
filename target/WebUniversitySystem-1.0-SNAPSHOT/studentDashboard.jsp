@@ -159,6 +159,9 @@
                     <a class="nav-link" href="StudentViewExamTimetable.jsp">Exam Timetable</a>
                 </li>
                 <li class="nav-item">
+                    <a href="BookSeat.jsp" class="nav-link">Book Exam Seat</a>                
+                </li>              
+                <li class="nav-item">
                     <a class="nav-link" href="ViewResults.jsp">Results</a>
                 </li>
                 <li class="nav-item">
@@ -174,16 +177,16 @@
 <div class="container mt-4">
     <div class="row text-center">
         <div class="col-md-3">
-            <a href="Library.jsp" class="btn btn-outline-primary w-100">📚 Library</a>
+            <a href="#" class="btn btn-outline-primary w-100">📚 Library</a>
         </div>
         <div class="col-md-3">
-            <a href="FeePayment.jsp" class="btn btn-outline-warning w-100">💳 Fee Payment</a>
+            <a href="#" class="btn btn-outline-warning w-100">💳 Fee Payment</a>
         </div>
         <div class="col-md-3">
             <a href="studentDashboard.jsp" class="btn btn-outline-info w-100">👤 Profile</a>
         </div>
         <div class="col-md-3">
-            <a href="HelpDesk.jsp" class="btn btn-outline-danger w-100">📞 Help Desk</a>
+            <a href="#" class="btn btn-outline-danger w-100">📞 Help Desk</a>
         </div>
     </div>
 </div>
