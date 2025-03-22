@@ -4,6 +4,6 @@
       "buildCommand": "./mvnw clean package"
     },
     "run": {
-      "command": "java -jar target/your-jar-file.jar"
+      "command": "java -jar target/WebUniversitySystem-1.0-SNAPSHOT.jar"
     }
   }
