@@ -1,0 +1,9 @@
+{
+    "build": {
+      "builder": "MAVEN",
+      "buildCommand": "./mvnw clean package"
+    },
+    "run": {
+      "command": "java -jar target/your-jar-file.jar"
+    }
+  }
